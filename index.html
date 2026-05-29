@@ -185,6 +185,12 @@
     .footer-inner { flex-direction: column; gap: 10px; text-align: center; }
     .countdown-strip { flex-direction: column; gap: 10px; }
   }
+  iframe {
+  width: 100%;
+  border: none;
+  border-radius: 12px;
+  min-height: 600px;
+}
 </style>
 </head>
 <body>
@@ -275,20 +281,17 @@
   <div class="story-inner">
     <div class="story-card">
       <div class="story-avatar avatar-blue">👧</div>
-      <div class="story-role">Người thụ hưởng</div>
-      <div class="story-name">Em học sinh tiểu học</div>
+      <div class="story-name">Em học sinh </div>
       <p class="story-quote">Mỗi ngày đi bộ hàng km đến trường, dùng sách cũ qua nhiều tay, học trong căn phòng chưa đủ ánh sáng. Đây là những em nhỏ mà chuyến đi của TCT hướng đến.</p>
     </div>
     <div class="story-card">
       <div class="story-avatar avatar-gold">👴</div>
-      <div class="story-role">Người dân địa phương</div>
-      <div class="story-name">Người dân thôn</div>
+      <div class="story-name">Người dân địa phương</div>
       <p class="story-quote">Mấy chục năm sống ở đây, họ chưa từng thấy con đường thôn được thắp sáng, chưa từng có ai từ nơi xa đến hỏi thăm và ở lại giúp đỡ thật sự.</p>
     </div>
     <div class="story-card">
       <div class="story-avatar avatar-green">🧑</div>
-      <div class="story-role">Tình nguyện viên TCT</div>
-      <div class="story-name">Bạn trẻ lần đầu đi tình nguyện</div>
+      <div class="story-name">Tình nguyện viên TCT</div>
       <p class="story-quote">Không chắc mình đủ sức, không biết mình làm được gì — nhưng quyết định lên đường. Và 7 ngày sau, họ trở về với thứ gì đó đã thay đổi bên trong.</p>
     </div>
   </div>
@@ -623,24 +626,7 @@
 
       <!-- PHẢI: GOOGLE FORM -->
       <div>
-        <div class="form-wrapper">
-          <div class="form-wrapper-title">Để lại thông tin — nhận phản hồi sau sự kiện</div>
-          <p class="form-wrapper-sub">Sau khi MHX kết thúc, chúng mình sẽ gửi ảnh/video về đúng hoạt động bạn đã tham gia tạo ra.</p>
-          <!--
-            HƯỚNG DẪN NHÚNG GOOGLE FORM:
-            1. Vào Google Form của bạn
-            2. Bấm nút "Gửi" (Send) góc trên phải
-            3. Chọn tab biểu tượng < > (Embed)
-            4. Copy toàn bộ đoạn code <iframe ...></iframe>
-            5. Dán vào đây, XÓA thẻ <iframe> mẫu bên dưới và thay bằng code của bạn
-          -->
-          <iframe
-            src="PASTE_YOUR_GOOGLE_FORM_EMBED_LINK_HERE"
-            frameborder="0"
-            marginheight="0"
-            marginwidth="0">
-            Đang tải biểu mẫu...
-          </iframe>
+        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeRRhiwEpoirdhHGrOkmcRcb_Xp1no3n7ZUCjcLAQkmuZPZ8g/viewform?embedded=true" width="640" height="1199" frameborder="0" marginheight="0" marginwidth="0">Đang tải…</iframe>
         </div>
       </div>
 
