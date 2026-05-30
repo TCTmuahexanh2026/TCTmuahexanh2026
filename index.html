@@ -107,9 +107,8 @@
   .activity-total { font-size: 12px; color: var(--text-light); margin-top: 3px; }
 
   /* PHOTO GALLERY */
-  .photo-grid { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 165px 110px; gap: 8px; height: 100%; }
+  .photo-grid { display: flex; flex-direction: column; gap: 8px; }
   .photo-item { border-radius: 10px; overflow: hidden; }
-  .photo-item:first-child { grid-column: 1 / -1; }
   .photo-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
   .photo-placeholder { width: 100%; height: 100%; background: linear-gradient(135deg, var(--blue-pale), var(--blue-mid)); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; color: var(--blue); font-size: 11px; font-weight: 500; text-align: center; padding: 8px; border-radius: 10px; }
   .photo-placeholder-icon { font-size: 24px; opacity: 0.65; }
@@ -164,7 +163,19 @@
   .hero-left > *:nth-child(4) { animation-delay: 0.4s; }
   .hero-left > *:nth-child(5) { animation-delay: 0.5s; }
   .hero-card { animation: fadeUp 0.6s ease 0.35s both; }
-
+/* TABS phiên chợ */
+  .tab-bar { display: flex; gap: 8px; margin: 14px 0; flex-wrap: wrap; }
+  .tab-btn { padding: 7px 14px; border: 1.5px solid var(--border); background: white; border-radius: 8px; font-size: 12px; font-weight: 500; color: var(--text-light); cursor: pointer; font-family: inherit; transition: all 0.18s; }
+  .tab-btn.active { background: var(--blue); border-color: var(--blue); color: white; }
+  .tab-btn:hover:not(.active) { border-color: var(--blue-mid); color: var(--blue); }
+  .tab-content.hidden { display: none; }
+  .tab-summary { font-size: 12px; color: var(--text-light); margin-bottom: 12px; padding: 8px 12px; background: var(--blue-pale); border-radius: 8px; }
+  .tab-summary strong { color: var(--blue); }
+  .tab-items { display: flex; flex-direction: column; gap: 10px; }
+  .tab-item .item-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
+  .tab-item .item-bar { height: 5px; background: var(--border); border-radius: 3px; overflow: hidden; }
+  .tab-item .item-fill { height: 100%; border-radius: 3px; background: var(--blue); }
+  .tab-item .item-sub { font-size: 11px; color: var(--text-light); margin-top: 2px; }
   /* RESPONSIVE MOBILE */
   @media (max-width: 768px) {
     nav { padding: 12px 20px; }
@@ -185,12 +196,7 @@
     .footer-inner { flex-direction: column; gap: 10px; text-align: center; }
     .countdown-strip { flex-direction: column; gap: 10px; }
   }
-  iframe {
-  width: 100%;
-  border: none;
-  border-radius: 12px;
-  min-height: 600px;
-}
+  
 </style>
 </head>
 <body>
@@ -348,12 +354,17 @@
           </div>
         </div>
 
-        <!-- GALLERY ĐÈN ĐƯỜNG -->
-        <!-- HƯỚNG DẪN THÊM ẢNH:
-             1. Upload ảnh lên Github cùng thư mục với index.html
-             2. Xóa thẻ <div class="photo-placeholder">...</div>
-             3. Bỏ comment dòng <img ...> bên dưới (xóa dấu <!- - và - ->) -->
+<!-- GALLERY ĐÈN ĐƯỜNG -->
         <div class="activity-right">
+          <div class="photo-grid">
+            <div class="photo-item" style="height:170px;">
+              <img src="den1.jpg" alt="Thắp sáng đường làng">
+            </div>
+            <div class="photo-item" style="height:130px;">
+              <img src="den2.jpg" alt="Lắp đèn đường">
+            </div>
+          </div>
+        </div>
           <div class="photo-grid">
             <div class="photo-item">
               <img src="den1.jpg" alt="Thắp sáng đường làng">
@@ -416,28 +427,17 @@
           </div>
         </div>
 
-        <!-- GALLERY THƯ VIỆN -->
-        <div class="activity-right">
-          <div class="photo-grid">
-            <div class="photo-item">
-              <!-- <img src="sach-1.jpg" alt="Góc đọc sách"> -->
-              <div class="photo-placeholder">
-                <span class="photo-placeholder-icon">📚</span>
-                Ảnh thư viện / góc sách<br><small style="opacity:0.7">Thay bằng ảnh thật của TCT</small>
-              </div>
-            </div>
-            <div class="photo-item">
-              <!-- <img src="sach-2.jpg" alt="Học sinh đọc sách"> -->
-              <div class="photo-placeholder"><span class="photo-placeholder-icon">📷</span>Ảnh 2</div>
-            </div>
-            <div class="photo-item">
-              <!-- <img src="sach-3.jpg" alt="Trao sách"> -->
-              <div class="photo-placeholder"><span class="photo-placeholder-icon">📷</span>Ảnh 3</div>
-            </div>
-          </div>
-        </div>
-      </div>
+<!-- GALLERY THƯ VIỆN -->
+ <div class="activity-right">
+  <div class="photo-grid">
+    <div class="photo-item" style="height:170px;">
+    <div class="photo-placeholder"><span class="photo-placeholder-icon">📚</span>Ảnh thư viện</div>
     </div>
+    <div class="photo-item" style="height:130px;">
+    <div class="photo-placeholder"><span class="photo-placeholder-icon">📚</span>Ảnh thư viện</div>
+    </div>
+  </div>
+ </div>
 
     <!-- HOẠT ĐỘNG 3: PHIÊN CHỢ -->
     <div class="activity-block">
@@ -451,55 +451,117 @@
             </div>
           </div>
           <p class="activity-desc">Một phiên chợ nơi người dân đến và lấy những gì họ cần — không phải nhận từ thiện, mà là mua sắm theo cách của họ. Chúng mình cần các mặt hàng thiết yếu dưới đây.</p>
-          <div class="items-list">
-            <div>
-              <div class="item-top">
-                <span class="item-name">Vở, bút, đồ dùng học tập</span>
-                <span class="item-status status-need">Còn thiếu 100 bộ</span>
+<!-- TABS -->
+          <div class="tab-bar">
+            <button class="tab-btn active" onclick="showTab('nhu-yeu-pham', this)">🥫 Nhu yếu phẩm</button>
+            <button class="tab-btn" onclick="showTab('gia-dung', this)">🏠 Đồ gia dụng</button>
+            <button class="tab-btn" onclick="showTab('hoc-tap', this)">✏️ Đồ dùng học tập</button>
+          </div>
+
+          <div class="tab-content" id="nhu-yeu-pham">
+            <div class="tab-summary">Tổng nhóm này: <strong>9.340.000đ</strong></div>
+            <div class="tab-items">
+              <div class="tab-item">
+                <div class="item-top"><span class="item-name">Dầu ăn (80 can)</span><span class="item-status status-need">Còn thiếu 80</span></div>
+                <div class="item-bar"><div class="item-fill" style="width:0%"></div></div>
+                <div class="item-sub">0 / 80 can · 53.000đ/can · Tổng: 4.240.000đ</div>
               </div>
-              <div class="item-bar"><div class="item-fill" style="width:0%"></div></div>
-              <div class="item-sub">0 / 100 bộ · ~15.000đ/bộ</div>
-            </div>
-            <div>
-              <div class="item-top">
-                <span class="item-name">Nhu yếu phẩm (dầu ăn, mắm, muối)</span>
-                <span class="item-status status-need">Còn thiếu</span>
+              <div class="tab-item">
+                <div class="item-top"><span class="item-name">Bột canh Hải Châu (80 gói)</span><span class="item-status status-need">Còn thiếu 80</span></div>
+                <div class="item-bar"><div class="item-fill" style="width:0%"></div></div>
+                <div class="item-sub">0 / 80 gói · 5.000đ/gói · Tổng: 400.000đ</div>
               </div>
-              <div class="item-bar"><div class="item-fill" style="width:0%"></div></div>
-              <div class="item-sub">Quyên góp bằng tiền hoặc hiện vật</div>
-            </div>
-            <div>
-              <div class="item-top">
-                <span class="item-name">Quần áo trẻ em (size 4–12)</span>
-                <span class="item-status status-need">Còn thiếu</span>
+              <div class="tab-item">
+                <div class="item-top"><span class="item-name">Mì chính (50 gói)</span><span class="item-status status-need">Còn thiếu 50</span></div>
+                <div class="item-bar"><div class="item-fill" style="width:0%"></div></div>
+                <div class="item-sub">0 / 50 gói · 34.000đ/gói · Tổng: 1.700.000đ</div>
               </div>
-              <div class="item-bar"><div class="item-fill" style="width:0%"></div></div>
-              <div class="item-sub">Nhận đồ còn tốt, đã giặt sạch</div>
+              <div class="tab-item">
+                <div class="item-top"><span class="item-name">Tương ớt Chinsu (50 chai)</span><span class="item-status status-need">Còn thiếu 50</span></div>
+                <div class="item-bar"><div class="item-fill" style="width:0%"></div></div>
+                <div class="item-sub">0 / 50 chai · 55.000đ/chai · Tổng: 2.750.000đ</div>
+              </div>
+              <div class="tab-item">
+                <div class="item-top"><span class="item-name">Đường mía (50kg)</span><span class="item-status status-need">Còn thiếu 50kg</span></div>
+                <div class="item-bar"><div class="item-fill" style="width:0%"></div></div>
+                <div class="item-sub">0 / 50kg · 25.000đ/kg · Tổng: 1.250.000đ</div>
+              </div>
             </div>
           </div>
-          <div class="activity-footer">
-            <a class="activity-cta" href="#dong-hanh">Xem danh sách đầy đủ →</a>
-            <div class="activity-total">Tổng cần: ~12.000.000đ · Đã nhận: 0đ</div>
+
+          <div class="tab-content hidden" id="gia-dung">
+            <div class="tab-summary">Tổng nhóm này: <strong>4.450.000đ</strong></div>
+            <div class="tab-items">
+              <div class="tab-item">
+                <div class="item-top"><span class="item-name">Kéo (50 cái)</span><span class="item-status status-need">Còn thiếu 50</span></div>
+                <div class="item-bar"><div class="item-fill" style="width:0%"></div></div>
+                <div class="item-sub">0 / 50 · 20.000đ/cái · Tổng: 1.000.000đ</div>
+              </div>
+              <div class="tab-item">
+                <div class="item-top"><span class="item-name">Thớt nhựa (50 cái)</span><span class="item-status status-need">Còn thiếu 50</span></div>
+                <div class="item-bar"><div class="item-fill" style="width:0%"></div></div>
+                <div class="item-sub">0 / 50 · 30.000đ/cái · Tổng: 1.500.000đ</div>
+              </div>
+              <div class="tab-item">
+                <div class="item-top"><span class="item-name">Đũa (50 đôi)</span><span class="item-status status-need">Còn thiếu 50</span></div>
+                <div class="item-bar"><div class="item-fill" style="width:0%"></div></div>
+                <div class="item-sub">0 / 50 · 22.000đ/đôi · Tổng: 1.100.000đ</div>
+              </div>
+              <div class="tab-item">
+                <div class="item-top"><span class="item-name">Thau nhựa (50 cái)</span><span class="item-status status-need">Còn thiếu 50</span></div>
+                <div class="item-bar"><div class="item-fill" style="width:0%"></div></div>
+                <div class="item-sub">0 / 50 · 22.000đ/cái · Tổng: 1.100.000đ</div>
+              </div>
+              <div class="tab-item">
+                <div class="item-top"><span class="item-name">Rổ nhựa (50 cái)</span><span class="item-status status-need">Còn thiếu 50</span></div>
+                <div class="item-bar"><div class="item-fill" style="width:0%"></div></div>
+                <div class="item-sub">0 / 50 · 15.000đ/cái · Tổng: 750.000đ</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tab-content hidden" id="hoc-tap">
+            <div class="tab-summary">Tổng nhóm này: <strong>3.725.000đ</strong></div>
+            <div class="tab-items">
+              <div class="tab-item">
+                <div class="item-top"><span class="item-name">Vở ô ly 80 trang (200 quyển)</span><span class="item-status status-need">Còn thiếu 200</span></div>
+                <div class="item-bar"><div class="item-fill" style="width:0%"></div></div>
+                <div class="item-sub">0 / 200 · 10.000đ/quyển · Tổng: 2.000.000đ</div>
+              </div>
+              <div class="tab-item">
+                <div class="item-top"><span class="item-name">Bút mực (200 cái)</span><span class="item-status status-need">Còn thiếu 200</span></div>
+                <div class="item-bar"><div class="item-fill" style="width:0%"></div></div>
+                <div class="item-sub">0 / 200 · 6.000đ/cái · Tổng: 1.200.000đ</div>
+              </div>
+              <div class="tab-item">
+                <div class="item-top"><span class="item-name">Bút chì (200 cái)</span><span class="item-status status-need">Còn thiếu 200</span></div>
+                <div class="item-bar"><div class="item-fill" style="width:0%"></div></div>
+                <div class="item-sub">0 / 200 · 3.000đ/cái · Tổng: 600.000đ</div>
+              </div>
+              <div class="tab-item">
+                <div class="item-top"><span class="item-name">Tẩy (150 cái)</span><span class="item-status status-need">Còn thiếu 150</span></div>
+                <div class="item-bar"><div class="item-fill" style="width:0%"></div></div>
+                <div class="item-sub">0 / 150 · 3.500đ/cái · Tổng: 525.000đ</div>
+              </div>
+            </div>
+          </div>
+     <div class="activity-footer" style="margin-top:16px;">
+            <a class="activity-cta" href="#dong-hanh">Đồng hành phiên chợ →</a>
+            <div class="activity-total">Tổng 3 nhóm cần quyên góp: 17.515.000đ · Đã nhận: 0đ</div>
           </div>
         </div>
 
         <!-- GALLERY PHIÊN CHỢ -->
         <div class="activity-right">
           <div class="photo-grid">
-            <div class="photo-item">
+            <div class="photo-item" style="height:170px;">
               <img src="pc0d.jpg" alt="Phiên chợ 0 đồng">
             </div>
-            <div class="photo-item">
-                <img src="pc0d2.jpg" alt="Phiên chợ 0 đồng">
-            </div>
-            <div class="photo-item">
-              <!-- <img src="cho-3.jpg" alt="Người dân nhận đồ"> -->
-              <div class="photo-placeholder"><span class="photo-placeholder-icon">📷</span>Ảnh 3</div>
+            <div class="photo-item" style="height:130px;">
+              <img src="pc0d2.jpg" alt="Phiên chợ 0 đồng">
             </div>
           </div>
         </div>
-      </div>
-    </div>
 
     <!-- HOẠT ĐỘNG 4: SỬA NHÀ -->
     <div class="activity-block">
@@ -548,25 +610,14 @@
         <!-- GALLERY SỬA NHÀ -->
         <div class="activity-right">
           <div class="photo-grid">
-            <div class="photo-item">
-              <!-- <img src="nha-1.jpg" alt="Sửa nhà tạm"> -->
-              <div class="photo-placeholder">
-                <span class="photo-placeholder-icon">🏠</span>
-                Ảnh hoạt động sửa nhà<br><small style="opacity:0.7">Thay bằng ảnh thật của TCT</small>
-              </div>
+            <div class="photo-item" style="height:170px;">
+              <img src="nha1.jpg" alt="Sửa nhà tạm">
             </div>
-            <div class="photo-item">
-              <!-- <img src="nha-2.jpg" alt="Trước khi sửa"> -->
-              <div class="photo-placeholder"><span class="photo-placeholder-icon">📷</span>Ảnh 2</div>
-            </div>
-            <div class="photo-item">
-              <!-- <img src="nha-3.jpg" alt="Sau khi sửa"> -->
-              <div class="photo-placeholder"><span class="photo-placeholder-icon">📷</span>Ảnh 3</div>
+            <div class="photo-item" style="height:130px;">
+              <img src="nha2.jpg" alt="Nhà sau khi sửa">
             </div>
           </div>
         </div>
-      </div>
-    </div>
 
   </div>
 </section>
@@ -680,6 +731,13 @@
     </div>
   </div>
 </footer>
-
+<script>
+function showTab(id, btn) {
+  document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+  document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+  document.getElementById(id).classList.remove('hidden');
+  btn.classList.add('active');
+}
+</script>
 </body>
 </html>
