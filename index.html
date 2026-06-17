@@ -276,16 +276,54 @@
   </div>
 </section>
 
+<!-- ĐIỂM ĐẾN -->
+<section style="background: white; padding: 40px 40px 0; border-bottom: 1px solid var(--border);">
+  <div style="max-width: 1100px; margin: 0 auto;">
+    <span class="section-tag">Câu chuyện</span>
+    <h2 class="section-title" style="margin-bottom: 6px;">Những điểm đến</h2>
+    <p style="font-size:14px; color:var(--text-light); margin-bottom: 24px;">Mỗi câu chuyện là một lý do để chúng mình lên đường.</p>
+    <div style="display:flex; gap:12px; flex-wrap:wrap; padding-bottom: 0;">
+      <a href="#story-hoc-sinh" style="display:flex; align-items:center; gap:10px; padding:14px 20px; background:var(--blue-pale); border:1.5px solid var(--blue-mid); border-radius:12px; text-decoration:none; transition:all 0.2s; flex:1; min-width:180px;"
+        onmouseover="this.style.background='var(--blue)';this.style.borderColor='var(--blue)';this.querySelectorAll('span').forEach(s=>s.style.color='white')"
+        onmouseout="this.style.background='var(--blue-pale)';this.style.borderColor='var(--blue-mid)';this.querySelectorAll('span').forEach(s=>s.style.color='')">
+        <span style="font-size:24px;">👧</span>
+        <div>
+          <span style="display:block; font-size:13px; font-weight:600; color:var(--text);">Em học sinh</span>
+          <span style="display:block; font-size:11px; color:var(--text-light); margin-top:2px;">Đôi chân nhỏ trên con đường đất</span>
+        </div>
+      </a>
+      <a href="#story-dan-dia-phuong" style="display:flex; align-items:center; gap:10px; padding:14px 20px; background:var(--blue-pale); border:1.5px solid var(--blue-mid); border-radius:12px; text-decoration:none; transition:all 0.2s; flex:1; min-width:180px;"
+        onmouseover="this.style.background='var(--blue)';this.style.borderColor='var(--blue)';this.querySelectorAll('span').forEach(s=>s.style.color='white')"
+        onmouseout="this.style.background='var(--blue-pale)';this.style.borderColor='var(--blue-mid)';this.querySelectorAll('span').forEach(s=>s.style.color='')">
+        <span style="font-size:24px;">👴</span>
+        <div>
+          <span style="display:block; font-size:13px; font-weight:600; color:var(--text);">Người dân địa phương</span>
+          <span style="display:block; font-size:11px; color:var(--text-light); margin-top:2px;">Cô Lăng, anh Duy — linh hồn bản làng</span>
+        </div>
+      </a>
+      <a href="#story-hoan-canh" style="display:flex; align-items:center; gap:10px; padding:14px 20px; background:var(--blue-pale); border:1.5px solid var(--blue-mid); border-radius:12px; text-decoration:none; transition:all 0.2s; flex:1; min-width:180px;"
+        onmouseover="this.style.background='var(--blue)';this.style.borderColor='var(--blue)';this.querySelectorAll('span').forEach(s=>s.style.color='white')"
+        onmouseout="this.style.background='var(--blue-pale)';this.style.borderColor='var(--blue-mid)';this.querySelectorAll('span').forEach(s=>s.style.color='')">
+        <span style="font-size:24px;">🧡</span>
+        <div>
+          <span style="display:block; font-size:13px; font-weight:600; color:var(--text);">Hoàn cảnh khó khăn</span>
+          <span style="display:block; font-size:11px; color:var(--text-light); margin-top:2px;">Chị Tự, bác Khịt, bác Hiền</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
 <!-- STORY STRIP: ba nhân vật, bỏ link "theo dõi" -->
 <section class="story-strip" id="chuyen-ke">
   <div class="story-inner">
-    <div class="story-card">
+   <div class="story-card" id="story-hoc-sinh">
       <div class="story-avatar avatar-blue">👧</div>
       <div class="story-name">Em học sinh </div>
       <p class="story-quote">Mỗi sáng, trước khi mặt trời lên cao, các em đã xách cặp ra khỏi nhà - đôi chân nhỏ bước trên con đường đất dài hàng cây số để đến trường. Cuốn sách trên tay còn in dấu của những người anh, người chị đã dùng trước - trang ố vàng, góc quăn, chữ mờ. Căn phòng học thiếu ánh sáng, nhưng ánh mắt các em thì không. Các em chưa bao giờ đòi hỏi nhiều. Chỉ là - các em xứng đáng được có nhiều hơn những gì đang có.
 </p>
     </div>
-    <div class="story-card">
+    <div class="story-card" id="story-dan-dia-phuong">
       <div class="story-avatar avatar-gold">👴</div>
       <div class="story-name">Người dân địa phương</div>
       <p class="story-quote">1. Cô Lương Cẩm Lăng - Trưởng thôn Mỏ Cấy, xã Vạn Linh, Lạng Sơn<br>
@@ -298,7 +336,7 @@ Mới về xã chưa đầy một năm, nhưng anh Vy Mạnh Duy đã để lạ
 Anh không đứng nhìn từ xa - anh lăn xả, hỏi han, lắng nghe. Với anh Duy, phát triển một vùng đất bắt đầu từ việc hiểu người dân muốn gì, cần gì, và đang đau ở đâu. Sự nhiệt tình của anh không phải ngọn lửa bùng lên rồi tắt - đó là thứ ánh sáng kiên nhẫn, ngày nào cũng sáng.<br>
 📍 UBND xã Vạn Linh, tỉnh Lạng Sơn <br> 📞 0962022619</p>
     </div>
-    <div class="story-card">
+    <div class="story-card" id="story-hoan-canh">
       <div class="story-avatar avatar-green">🧑</div>
       <div class="story-name">🧑 Một số hoàn cảnh đặc biệt khó khăn</div>
       <p class="story-quote">1. Chị Ma Thị Tự - Mái nhà chưa che được nắng mưa<br>
