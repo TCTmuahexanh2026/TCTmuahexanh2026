@@ -71,16 +71,20 @@
   /* STORY STRIP */
   .story-strip { background: var(--blue-pale); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 0 !important; }
   .story-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); }
-  .story-card { padding: 32px 28px; border-right: 1px solid var(--border); }
-  .story-card:last-child { border-right: none; }
-  .story-avatar { width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 22px; margin-bottom: 12px; }
-  .avatar-blue { background: var(--blue-mid); }
-  .avatar-gold { background: #fef3c7; }
-  .avatar-green { background: #d1fae5; }
-  .story-role { font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--blue); margin-bottom: 4px; }
-  .story-name { font-size: 16px; font-weight: 600; margin-bottom: 8px; }
-  .story-quote { font-size: 13px; color: var(--text-light); line-height: 1.65; font-style: italic; }
-
+  .story-card { border-right: 1px solid var(--border); }
+.story-card:last-child { border-right: none; }
+.story-header { padding: 28px 28px 20px; cursor: pointer; display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; user-select: none; }
+.story-header-left { display: flex; align-items: flex-start; gap: 14px; }
+.story-avatar { width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; }
+.avatar-blue { background: var(--blue-mid); }
+.avatar-gold { background: #fef3c7; }
+.avatar-green { background: #d1fae5; }
+.story-name { font-size: 16px; font-weight: 600; }
+.story-toggle { width: 28px; height: 28px; border-radius: 50%; background: white; border: 1.5px solid var(--border); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; transition: background 0.2s, border-color 0.2s; font-size: 13px; color: var(--text-light); }
+.story-card.open .story-toggle { background: var(--blue); border-color: var(--blue); color: white; }
+.story-body { max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.3s ease; padding: 0 28px; }
+.story-card.open .story-body { max-height: 1200px; padding: 0 28px 28px; }
+.story-quote { font-size: 13px; color: var(--text-light); line-height: 1.65; font-style: italic; }
   /* ACTIVITIES — mỗi hoạt động 1 hàng ngang */
   .activity-block { background: white; border: 1px solid var(--border); border-radius: 20px; margin-bottom: 24px; overflow: hidden; transition: box-shadow 0.2s; }
   .activity-block:hover { box-shadow: 0 8px 32px rgba(26,95,200,0.09); }
@@ -280,41 +284,62 @@
 <!-- STORY STRIP: ba nhân vật, bỏ link "theo dõi" -->
 <section class="story-strip" id="chuyen-ke">
   <div class="story-inner">
-   <div class="story-card" id="story-hoc-sinh">
-      <div class="story-avatar avatar-blue">👧</div>
-      <div class="story-name">Em học sinh </div>
-      <p class="story-quote">Mỗi sáng, trước khi mặt trời lên cao, các em đã xách cặp ra khỏi nhà - đôi chân nhỏ bước trên con đường đất dài hàng cây số để đến trường. Cuốn sách trên tay còn in dấu của những người anh, người chị đã dùng trước - trang ố vàng, góc quăn, chữ mờ. Căn phòng học thiếu ánh sáng, nhưng ánh mắt các em thì không. Các em chưa bao giờ đòi hỏi nhiều. Chỉ là - các em xứng đáng được có nhiều hơn những gì đang có.
-</p>
+
+    <div class="story-card" id="story-hoc-sinh">
+      <div class="story-header" onclick="toggleStory(this)">
+        <div class="story-header-left">
+          <div class="story-avatar avatar-blue">👧</div>
+          <div class="story-name">Em học sinh</div>
+        </div>
+        <div class="story-toggle">▼</div>
+      </div>
+      <div class="story-body">
+        <p class="story-quote">Mỗi sáng, trước khi mặt trời lên cao, các em đã xách cặp ra khỏi nhà - đôi chân nhỏ bước trên con đường đất dài hàng cây số để đến trường. Cuốn sách trên tay còn in dấu của những người anh, người chị đã dùng trước - trang ố vàng, góc quăn, chữ mờ. Căn phòng học thiếu ánh sáng, nhưng ánh mắt các em thì không. Các em chưa bao giờ đòi hỏi nhiều. Chỉ là - các em xứng đáng được có nhiều hơn những gì đang có.</p>
+      </div>
     </div>
+
     <div class="story-card" id="story-dan-dia-phuong">
-      <div class="story-avatar avatar-gold">👴</div>
-      <div class="story-name">Người dân địa phương</div>
-      <p class="story-quote">1. Cô Lương Cẩm Lăng - Trưởng thôn Mỏ Cấy, xã Vạn Linh, Lạng Sơn<br>
+      <div class="story-header" onclick="toggleStory(this)">
+        <div class="story-header-left">
+          <div class="story-avatar avatar-gold">👴</div>
+          <div class="story-name">Người dân địa phương</div>
+        </div>
+        <div class="story-toggle">▼</div>
+      </div>
+      <div class="story-body">
+        <p class="story-quote">1. Cô Lương Cẩm Lăng - Trưởng thôn Mỏ Cấy, xã Vạn Linh, Lạng Sơn<br>
 Giữa núi rừng Vạn Linh, có một người phụ nữ Nùng mà bà con gọi tên với tất cả sự tin yêu – cô Lương Cẩm Lăng. Cô không cần chức danh để được kính trọng, không cần lời hoa mỹ để được yêu thương. Cô chỉ cần đôi chân không ngại đường dốc, và một trái tim chưa bao giờ thôi lo cho bản làng.<br>
 Cô biết tên từng đứa trẻ, hiểu hoàn cảnh từng gia đình - không phải vì nhiệm vụ bắt buộc, mà vì với cô, bà con chính là gia đình. Những người như cô Lăng là linh hồn thầm lặng giữ cho một bản làng không bao giờ mất đi hơi ấm.<br>
 📍 Thôn Mỏ Cấy, xã Vạn Linh, tỉnh Lạng Sơn <br> 📞 0348699288</p>
-
-      <p class="story-quote" style="margin-top:14px;">2. Anh Vy Mạnh Duy - Bí thư xã Vạn Linh, Lạng Sơn<br>
+        <p class="story-quote" style="margin-top:14px;">2. Anh Vy Mạnh Duy - Bí thư xã Vạn Linh, Lạng Sơn<br>
 Mới về xã chưa đầy một năm, nhưng anh Vy Mạnh Duy đã để lại dấu ấn bằng thứ không thể giả sự - chân thành. Chàng trai Nùng sinh năm 1993 ấy mang theo nhiệt huyết của tuổi trẻ và tấm lòng của người con yêu bản làng, dù đây chưa phải quê hương anh sinh ra.<br>
 Anh không đứng nhìn từ xa - anh lăn xả, hỏi han, lắng nghe. Với anh Duy, phát triển một vùng đất bắt đầu từ việc hiểu người dân muốn gì, cần gì, và đang đau ở đâu. Sự nhiệt tình của anh không phải ngọn lửa bùng lên rồi tắt - đó là thứ ánh sáng kiên nhẫn, ngày nào cũng sáng.<br>
 📍 UBND xã Vạn Linh, tỉnh Lạng Sơn <br> 📞 0962022619</p>
+      </div>
     </div>
+
     <div class="story-card" id="story-hoan-canh">
-      <div class="story-avatar avatar-green">🧑</div>
-      <div class="story-name">🧑 Một số hoàn cảnh đặc biệt khó khăn</div>
-      <p class="story-quote">1. Chị Ma Thị Tự - Mái nhà chưa che được nắng mưa<br>
+      <div class="story-header" onclick="toggleStory(this)">
+        <div class="story-header-left">
+          <div class="story-avatar avatar-green">🧑</div>
+          <div class="story-name">🧑 Một số hoàn cảnh đặc biệt khó khăn</div>
+        </div>
+        <div class="story-toggle">▼</div>
+      </div>
+      <div class="story-body">
+        <p class="story-quote">1. Chị Ma Thị Tự - Mái nhà chưa che được nắng mưa<br>
 Gia đình chị Ma Thị Tự có bốn người - hai vợ chồng và hai cô con gái nhỏ, một em sinh năm 2008, một em sinh năm 2011. Cả nhà sống bằng ruộng lúa và mảnh thuốc lào, quanh năm bán mặt cho đất bán lưng cho trời, chắt chiu từng đồng.<br>
 Nhưng thứ đau lòng nhất không phải là cái nghèo - mà là căn nhà tạm bợ các con đang lớn lên trong đó. Nắng thì chiếu thẳng qua khe vách. Mưa bão đến, cả nhà phải chạy sang nhờ nhà hàng xóm trú tạm. Xã có chương trình cho vay vốn làm nhà, nhưng vì không có sổ đất, gia đình chị đứng ngoài nhìn cơ hội đó trôi qua - trong khi hai đứa con gái vẫn ngày ngày học bài dưới mái nhà chẳng đủ che.</p>
-
-      <p class="story-quote" style="margin-top:14px;">2. Bác Chuông Văn Khịt - Người ở cuối con đường rừng<br>
+        <p class="story-quote" style="margin-top:14px;">2. Bác Chuông Văn Khịt - Người ở cuối con đường rừng<br>
 Muốn đến nhà bác Chuông Văn Khịt, phải đi bộ hơn 6km đường rừng từ trung tâm thôn - qua dốc, qua suối, qua những khúc cua mà trời tối là không còn thấy đường. Ngôi nhà của bác cheo leo giữa một ngọn đồi, tách biệt với phần còn lại của thế giới đến mức mãi cuối năm 2025 mới có điện lần đầu tiên.<br>
 Hai người con trai của bác - một người đã lập gia đình nhưng cũng thuộc diện hộ nghèo, một người vào Nam làm ăn biền biệt. Căn nhà trên đồi giờ chỉ còn hai ông bà già nương tựa nhau. Mỗi ngày, muốn mua mớ rau hay gùi bó củi đi bán, ông lại một mình đi bộ hơn 6km đường rừng xuống trung tâm xóm - rồi lại một mình trở về.<br>
 Ở nơi xa nhất của thôn ấy, có hai người đang sống một cuộc đời lặng lẽ đến nao lòng.</p>
-
-      <p class="story-quote" style="margin-top:14px;">3. Bác Hoàng Thị Hiền<br>
+        <p class="story-quote" style="margin-top:14px;">3. Bác Hoàng Thị Hiền<br>
 Ngay đầu thôn, khuất sau một lùm cây, có một ngôi nhà mà người không để ý thì dễ đi qua mà không biết có người đang sống ở đó. Căn nhà nhỏ, tối, chưa có nhà vệ sinh khép kín - nhưng đó là tất cả những gì hai mẹ con bác Hiền có với nhau suốt bao nhiêu năm nay.<br>
 Cậu con trai ngoài 30 tuổi, sinh ra đã thiệt thòi hơn bạn bè đồng trang lứa nên không thể tự lo cho mình, chính vì vậy mà bác Hiền vẫn ngày đêm đi làm nuôi con. Ai trong xóm thuê gì thì hai mẹ con đi làm đó, kiếm từng bữa cơm qua ngày. Gần 70 tuổi, bác Hiền chưa một lần được nghỉ ngơi theo đúng nghĩa - không phải vì bác không muốn, mà vì có một người vẫn đang cần bác.</p>
+      </div>
     </div>
+
   </div>
 </section>
 
@@ -692,6 +717,22 @@ Cậu con trai ngoài 30 tuổi, sinh ra đã thiệt thòi hơn bạn bè đồ
   </div>
 </footer>
 <script>
+function showTab(id, btn) {
+  document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+  document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+  document.getElementById(id).classList.remove('hidden');
+  btn.classList.add('active');
+}
+</script>
+      <script>
+function toggleStory(header) {
+  const card = header.closest('.story-card');
+  const toggle = header.querySelector('.story-toggle');
+  const isOpen = card.classList.contains('open');
+  card.classList.toggle('open');
+  toggle.textContent = isOpen ? '▼' : '▲';
+}
+
 function showTab(id, btn) {
   document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
   document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
